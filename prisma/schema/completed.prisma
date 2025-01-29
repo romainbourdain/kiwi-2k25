@@ -1,0 +1,9 @@
+model UserLessonCompleted {
+    id String @id @default(uuid())
+
+    userId String
+    user   User   @relation(fields: [userId], references: [id])
+
+    lessonId String
+    lesson   CourseLesson @relation(fields: [lessonId], references: [id])
+}

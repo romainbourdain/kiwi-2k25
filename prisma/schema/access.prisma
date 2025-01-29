@@ -1,0 +1,9 @@
+model UserCourseAccess {
+    id String @id @default(uuid())
+
+    userId String
+    user   User   @relation(fields: [userId], references: [id])
+
+    courseId String
+    course   Course @relation(fields: [courseId], references: [id])
+}

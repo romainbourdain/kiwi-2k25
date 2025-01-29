@@ -1,0 +1,52 @@
+enum CourseStatus {
+    PUBLIC
+    PRIVATE
+}
+
+model Course {
+    id          String       @id @default(uuid())
+    name        String
+    description String
+    status      CourseStatus @default(PRIVATE)
+    imageUrl    String?
+
+    courseSections CourseSection[]
+    userAccess     UserCourseAccess[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    User      User?    @relation(fields: [userId], references: [id])
+    userId    String?
+}
+
+model CourseSection {
+    id     String       @id @default(uuid())
+    name   String
+    status CourseStatus @default(PRIVATE)
+    order  Int
+
+    courseId String
+    course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+    courseLessons CourseLesson[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model CourseLesson {
+    id          String       @id @default(uuid())
+    name        String
+    description String
+    content     String
+    order       Int
+    status      CourseStatus @default(PRIVATE)
+
+    sectionId String
+    section   CourseSection @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+
+    completedBy UserLessonCompleted[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
