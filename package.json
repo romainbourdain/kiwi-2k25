@@ -1,5 +1,5 @@
 {
-  "name": "kiwi-2k25",
+  "name": "kiwi",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,6 +15,7 @@
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",
     "@prisma/client": "^6.3.0",
+    "@radix-ui/react-slot": "^1.1.1",
     "@t3-oss/env-nextjs": "^0.12.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -33,12 +34,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "autoprefixer": "^10.4.20",
     "eslint": "^9",
     "eslint-config-next": "15.2.0-canary.31",
-    "postcss": "^8.5.1",
+    "eslint-config-prettier": "^10.0.1",
     "prisma": "^6.3.0",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "^4.0.0",
     "typescript": "^5"
   }
 }
