@@ -1,8 +1,8 @@
 "use server";
 
 import { getCurrentUser } from "@/actions/user.action";
-import { LessonData, lessonSchema } from "@/features/lessons/lesson.schema";
 import { hasPermission } from "@/lib/permissions";
+import { LessonData, lessonSchema } from "@/schemas/lesson.schema";
 import {
   findCourseByLessonIdQuery,
   findCourseBySectionIdQuery,

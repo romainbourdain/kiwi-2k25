@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { GithubButton } from "@/features/auth/auth-components/sign-in-button";
+import { GithubButton } from "@/features/auth/sign-in-button";
 import type { PageParams } from "@/types/next";
 
 export default async function SignInPage({}: PageParams) {

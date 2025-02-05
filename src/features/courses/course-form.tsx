@@ -15,8 +15,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { CourseData, courseSchema } from "@/features/courses/course.schema";
 import { actionToast } from "@/lib/action";
+import { CourseData, courseSchema } from "@/schemas/course.schema";
 import { Course } from "@prisma/client";
 
 export type CourseFormProps = {

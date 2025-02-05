@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CourseForm } from "@/features/courses/course-components/course-form";
+import { CourseForm } from "@/features/courses/course-form";
 import { LessonFormDialog } from "@/features/lessons/lesson-form-dialog";
 import { SortableLessonList } from "@/features/lessons/sortable-lesson-list";
 import { SectionFormDialog } from "@/features/sections/section-form-dialog";

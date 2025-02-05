@@ -24,7 +24,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { actionToast } from "@/lib/action";
 import { CourseLesson, CourseSection, CourseStatus } from "@prisma/client";
-import { LessonData, lessonSchema } from "./lesson.schema";
+import { LessonData, lessonSchema } from "../../schemas/lesson.schema";
 
 export type LessonFormProps = {
   sections?: Pick<CourseSection, "id" | "name">[];

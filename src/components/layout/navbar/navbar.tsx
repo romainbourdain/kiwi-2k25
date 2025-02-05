@@ -1,4 +1,4 @@
-import { UserButton } from "@/features/auth/auth-components/user-button";
+import { UserButton } from "@/features/auth/user-button";
 import { ThemeToggle } from "@/features/theme/theme-toggle";
 import Image from "next/image";
 import Link from "next/link";

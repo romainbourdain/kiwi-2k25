@@ -1,3 +1,4 @@
+import { getCurrentUser } from "@/actions/user.action";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -9,7 +10,6 @@ import { signOut } from "@/lib/auth";
 import { hasPermission } from "@/lib/permissions";
 import { LogOut, ShieldCheck } from "lucide-react";
 import Link from "next/link";
-import { getCurrentUser } from "../../../actions/user.action";
 import { SignInButton } from "./sign-in-button";
 
 export const UserButton = async () => {

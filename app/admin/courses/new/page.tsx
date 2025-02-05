@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/layout/page/page-header";
-import { CourseForm } from "@/features/courses/course-components/course-form";
+import { CourseForm } from "@/features/courses/course-form";
 import type { PageParams } from "@/types/next";
 
 export default async function RoutePage({}: PageParams) {

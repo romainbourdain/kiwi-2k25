@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/select";
 import { actionToast } from "@/lib/action";
 import { CourseSection, CourseStatus } from "@prisma/client";
-import { SectionData, sectionSchema } from "./section.schema";
+import { SectionData, sectionSchema } from "../../schemas/section.schema";
 
 export type SectionFormProps = {
   courseId: string;

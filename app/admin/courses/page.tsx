@@ -1,7 +1,7 @@
 import { getAllCourses } from "@/actions/course.action";
 import { PageHeader } from "@/components/layout/page/page-header";
 import { buttonVariants } from "@/components/ui/button";
-import { CourseTable } from "@/features/courses/course-components/course-table";
+import { CourseTable } from "@/features/courses/course-table";
 import type { PageParams } from "@/types/next";
 import Link from "next/link";
 

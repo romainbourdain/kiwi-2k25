@@ -10,7 +10,7 @@ import {
 } from "@/services/course.service";
 import { cacheTag } from "next/dist/server/use-cache/cache-tag";
 import { redirect } from "next/navigation";
-import { CourseData, courseSchema } from "../features/courses/course.schema";
+import { CourseData, courseSchema } from "../schemas/course.schema";
 import { getCurrentUser } from "./user.action";
 
 export const getAllCourses = async () => {

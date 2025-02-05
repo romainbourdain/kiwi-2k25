@@ -1,8 +1,8 @@
 "use server";
 
 import { getCurrentUser } from "@/actions/user.action";
-import { SectionData, sectionSchema } from "@/features/sections/section.schema";
 import { hasPermission } from "@/lib/permissions";
+import { SectionData, sectionSchema } from "@/schemas/section.schema";
 import {
   findCourseByIdQuery,
   findCourseBySectionIdQuery,
