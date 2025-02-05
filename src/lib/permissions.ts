@@ -88,6 +88,9 @@ export const ROLES = {
     lessons: {
       view: (_, lesson) => lesson.status === CourseStatus.PUBLIC,
     },
+    admin: {
+      view: false,
+    },
   },
 } as const satisfies RolesWithPermissions;
 

@@ -11,7 +11,7 @@ export type RequireAuthProps = PropsWithChildren<{
   redirectTo?: string;
 }>;
 
-export const AuthGate = async ({ ...props }: RequireAuthProps) => {
+export const AuthGate = async (props: RequireAuthProps) => {
   return (
     <Suspense
       fallback={

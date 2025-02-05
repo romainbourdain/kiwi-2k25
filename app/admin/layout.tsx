@@ -6,8 +6,7 @@ export default async function AdminLayout({ children }: LayoutParams) {
   return (
     <>
       <Navbar variant="admin" />
-      <AuthGate resource="admin"></AuthGate>
-      {children}
+      <AuthGate resource="admin">{children}</AuthGate>
     </>
   );
 }
