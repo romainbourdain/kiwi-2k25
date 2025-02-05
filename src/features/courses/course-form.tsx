@@ -1,6 +1,9 @@
 "use client";
 
-import { createCourse, updateCourse } from "@/actions/course.action";
+import {
+  createCourseAction,
+  updateCourseAction,
+} from "@/actions/course.action";
 import { LoadingTextSwap } from "@/components/action-button";
 import { RequiredLabelIcon } from "@/components/icons/required-label-icon";
 import { Button } from "@/components/ui/button";
@@ -15,7 +18,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { actionToast } from "@/lib/action";
 import { CourseData, courseSchema } from "@/schemas/course.schema";
 import { Course } from "@prisma/client";
 
@@ -34,9 +36,11 @@ export const CourseForm = ({ course }: CourseFormProps) => {
 
   const handleSubmit = async (values: CourseData) => {
     const action =
-      course === undefined ? createCourse : updateCourse.bind(null, course.id);
-    const data = await action(values);
-    actionToast({ actionData: data });
+      course === undefined
+        ? createCourseAction
+        : updateCourseAction.bind(null, course.id);
+    const response = await action(values);
+    // actionToast({ actionData: data });
   };
 
   return (

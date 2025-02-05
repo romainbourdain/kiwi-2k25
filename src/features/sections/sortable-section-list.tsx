@@ -1,6 +1,9 @@
 "use client";
 
-import { deleteSection, updateSectionOrders } from "@/actions/section.action";
+import {
+  deleteSectionAction,
+  updateSectionOrdersAction,
+} from "@/actions/section.action";
 import { ActionButton } from "@/components/action-button";
 import { SortableItem, SortableList } from "@/components/sortable-list";
 import { Button } from "@/components/ui/button";
@@ -22,7 +25,7 @@ export const SortableSectionList = ({
   return (
     <SortableList
       items={sections}
-      onOrderChange={updateSectionOrders}
+      onOrderChange={updateSectionOrdersAction}
       renderItems={(items) => (
         <>
           {items.length > 0 ? (
@@ -54,7 +57,7 @@ export const SortableSectionList = ({
                   </DialogTrigger>
                 </SectionFormDialog>
                 <ActionButton
-                  action={deleteSection.bind(null, section.id)}
+                  action={deleteSectionAction.bind(null, section.id)}
                   requireAreYouSure
                   variant="destructiveOutline"
                   size="sm"

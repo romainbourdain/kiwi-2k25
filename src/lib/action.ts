@@ -2,7 +2,7 @@ import { getCurrentUser } from "@/actions/user.action";
 import { createSafeActionClient } from "next-safe-action";
 import { toast, ToastT } from "sonner";
 
-class ActionError extends Error {
+export class ActionError extends Error {
   code: string;
   constructor(code: string, message: string) {
     super(message);

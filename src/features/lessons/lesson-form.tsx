@@ -1,6 +1,9 @@
 "use client";
 
-import { createLesson, updateLesson } from "@/actions/lesson.action";
+import {
+  createLessonAction,
+  updateLessonAction,
+} from "@/actions/lesson.action";
 import { LoadingTextSwap } from "@/components/action-button";
 import { RequiredLabelIcon } from "@/components/icons/required-label-icon";
 import { Button } from "@/components/ui/button";
@@ -22,7 +25,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { actionToast } from "@/lib/action";
 import { CourseLesson, CourseSection, CourseStatus } from "@prisma/client";
 import { LessonData, lessonSchema } from "../../schemas/lesson.schema";
 
@@ -55,11 +57,14 @@ export const LessonForm = ({
 
   const handleSubmit = async (values: LessonData) => {
     const action =
-      lesson === undefined ? createLesson : updateLesson.bind(null, lesson.id);
-    const data = await action(values);
-    actionToast({ actionData: data });
+      lesson === undefined
+        ? createLessonAction
+        : updateLessonAction.bind(null, lesson.id);
+    const response = await action(values);
+    // actionToast({ actionData: data });
 
-    if (!data.error) onSuccess?.();
+    // if (!data.error) onSuccess?.();
+    if (!response?.serverError) onSuccess?.();
   };
 
   return (

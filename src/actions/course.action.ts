@@ -1,6 +1,7 @@
 "use server";
 
 import { getCourseGlobalTag } from "@/cache/course.cache";
+import { actionClient } from "@/lib/action";
 import { hasPermission } from "@/lib/permissions";
 import {
   createCourseQuery,
@@ -10,8 +11,8 @@ import {
 } from "@/services/course.service";
 import { cacheTag } from "next/dist/server/use-cache/cache-tag";
 import { redirect } from "next/navigation";
-import { CourseData, courseSchema } from "../schemas/course.schema";
-import { getCurrentUser } from "./user.action";
+import { z } from "zod";
+import { courseSchema } from "../schemas/course.schema";
 
 export const getAllCourses = async () => {
   "use cache";
@@ -48,81 +49,38 @@ export const getAllCourses = async () => {
   }));
 };
 
-export const createCourse = async (unsafeData: CourseData) => {
-  const { success, data } = courseSchema.safeParse(unsafeData);
+export const createCourseAction = actionClient
+  .schema(courseSchema)
+  .action(async ({ ctx, parsedInput }) => {
+    const { user } = ctx;
 
-  if (!success)
-    return {
-      error: true,
-      message: "Les données fournies ne sont pas valides",
-    };
+    if (!hasPermission(user, "courses", "create"))
+      throw new Error("Vous n'avez pas la permission de créer un cours");
 
-  const user = await getCurrentUser();
-  if (!user)
-    return {
-      error: true,
-      message: "Vous devez être connecté pour créer un cours",
-    };
+    const course = await createCourseQuery(parsedInput);
 
-  if (!hasPermission(user, "courses", "create"))
-    return {
-      error: true,
-      message: "Vous n'avez pas la permission de créer un cours",
-    };
+    redirect(`/admin/courses/${course.id}/edit`);
+  });
 
-  const course = await createCourseQuery(data);
+export const updateCourseAction = actionClient
+  .schema(courseSchema)
+  .bindArgsSchemas<[id: z.ZodString]>([z.string()])
+  .action(
+    async ({ ctx: { user }, parsedInput, bindArgsParsedInputs: [id] }) => {
+      if (!hasPermission(user, "courses", "update"))
+        throw new Error(
+          "Vous n'avez pas la permission de mettre à jour ce cours"
+        );
 
-  redirect(`/admin/courses/${course.id}/edit`);
-};
+      await updateCourseQuery(id, parsedInput);
+    }
+  );
 
-export const updateCourse = async (id: string, unsafeData: CourseData) => {
-  const { success, data } = courseSchema.safeParse(unsafeData);
+export const deleteCourseAction = actionClient
+  .bindArgsSchemas<[id: z.ZodString]>([z.string()])
+  .action(async ({ ctx: { user }, bindArgsParsedInputs: [id] }) => {
+    if (!hasPermission(user, "courses", "delete"))
+      throw new Error("Vous n'avez pas la permission de supprimer ce cours");
 
-  if (!success)
-    return {
-      error: true,
-      message: "Les données fournies ne sont pas valides",
-    };
-
-  const user = await getCurrentUser();
-  if (!user)
-    return {
-      error: true,
-      message: "Vous devez être connecté pour mettre à jour ce cours",
-    };
-
-  if (!hasPermission(user, "courses", "update"))
-    return {
-      error: true,
-      message: "Vous n'avez pas la permission de mettre à jour ce cours",
-    };
-
-  await updateCourseQuery(id, data);
-
-  return {
-    error: false,
-    message: "Le cours a été mis à jour avec succès",
-  };
-};
-
-export const deleteCourse = async (id: string) => {
-  const user = await getCurrentUser();
-  if (!user)
-    return {
-      error: true,
-      message: "Vous devez être connecté pour supprimer un cours",
-    };
-
-  if (!hasPermission(user, "courses", "delete"))
-    return {
-      error: true,
-      message: "Vous n'avez pas la permission de supprimer ce cours",
-    };
-
-  await deleteCourseQuery(id);
-
-  return {
-    error: false,
-    message: "Le cours a été supprimé avec succès",
-  };
-};
+    await deleteCourseQuery(id);
+  });

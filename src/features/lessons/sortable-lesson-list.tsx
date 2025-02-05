@@ -1,6 +1,9 @@
 "use client";
 
-import { deleteLesson, updateLessonsOrder } from "@/actions/lesson.action";
+import {
+  deleteLessonAction,
+  updateLessonsOrderAction,
+} from "@/actions/lesson.action";
 import { ActionButton } from "@/components/action-button";
 import { SortableItem, SortableList } from "@/components/sortable-list";
 import { Button } from "@/components/ui/button";
@@ -25,7 +28,7 @@ export const SortableLessonList = ({
   return (
     <SortableList
       items={lessons}
-      onOrderChange={updateLessonsOrder}
+      onOrderChange={updateLessonsOrderAction}
       renderItems={(items) => (
         <div className="space-y-1">
           {items.length > 0 ? (
@@ -57,7 +60,7 @@ export const SortableLessonList = ({
                   </DialogTrigger>
                 </LessonFormDialog>
                 <ActionButton
-                  action={deleteLesson.bind(null, lesson.id)}
+                  action={deleteLessonAction.bind(null, lesson.id)}
                   requireAreYouSure
                   variant="destructiveOutline"
                   size="sm"

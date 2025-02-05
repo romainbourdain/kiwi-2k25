@@ -1,6 +1,9 @@
 "use client";
 
-import { createSection, updateSection } from "@/actions/section.action";
+import {
+  createSectionAction,
+  updateSectionAction,
+} from "@/actions/section.action";
 import { LoadingTextSwap } from "@/components/action-button";
 import { RequiredLabelIcon } from "@/components/icons/required-label-icon";
 import { Button } from "@/components/ui/button";
@@ -21,7 +24,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { actionToast } from "@/lib/action";
 import { CourseSection, CourseStatus } from "@prisma/client";
 import { SectionData, sectionSchema } from "../../schemas/section.schema";
 
@@ -47,12 +49,12 @@ export const SectionForm = ({
   const handleSubmit = async (values: SectionData) => {
     const action =
       section === undefined
-        ? createSection.bind(null, courseId)
-        : updateSection.bind(null, section.id);
-    const data = await action(values);
-    actionToast({ actionData: data });
+        ? createSectionAction.bind(null, courseId)
+        : updateSectionAction.bind(null, section.id);
+    const response = await action(values);
+    // actionToast({ actionData: data });
 
-    if (!data.error) onSuccess?.();
+    if (!response?.serverError) onSuccess?.();
   };
 
   return (

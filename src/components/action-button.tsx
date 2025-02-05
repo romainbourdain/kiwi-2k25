@@ -1,7 +1,7 @@
 "use client";
 
-import { actionToast } from "@/lib/action";
 import { cn } from "@/lib/utils";
+import { SafeActionFn } from "next-safe-action";
 import { ComponentPropsWithRef, PropsWithChildren, useTransition } from "react";
 import { Spinner } from "./icons/spinner";
 import {
@@ -21,7 +21,7 @@ export type ActionButtonProps = Omit<
   ComponentPropsWithRef<typeof Button>,
   "onClick"
 > & {
-  action: () => Promise<{ error: boolean; message: string }>;
+  action: () => SafeActionFn;
   requireAreYouSure?: boolean;
 };
 
@@ -38,7 +38,7 @@ export const ActionButton = ({
     startTransition(async () => {
       const data = await action();
 
-      actionToast({ actionData: data });
+      // actionToast({ actionData: data });
     });
   };
 

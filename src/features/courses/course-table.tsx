@@ -1,4 +1,4 @@
-import { deleteCourse } from "@/actions/course.action";
+import { deleteCourseAction } from "@/actions/course.action";
 import { ActionButton } from "@/components/action-button";
 import { Button } from "@/components/ui/button";
 import {
@@ -65,7 +65,7 @@ export const CourseTable = ({ courses }: CourseTableProps) => {
                   </Link>
                 </Button>
                 <ActionButton
-                  action={deleteCourse.bind(null, course.id)}
+                  action={deleteCourseAction.bind(null, course.id)}
                   variant="destructiveOutline"
                   requireAreYouSure
                 >

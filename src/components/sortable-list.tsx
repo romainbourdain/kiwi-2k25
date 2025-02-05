@@ -6,6 +6,7 @@ import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { arrayMove, SortableContext, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { GripVertical } from "lucide-react";
+import { SafeActionFn } from "next-safe-action";
 import {
   PropsWithChildren,
   ReactNode,
@@ -17,9 +18,7 @@ import { Button } from "./ui/button";
 
 export type SortableListProps<T extends { id: string }> = {
   items: T[];
-  onOrderChange: (
-    newOrder: string[]
-  ) => Promise<{ error: boolean; message: string }>;
+  onOrderChange: SafeActionFn;
   renderItems: (items: T[]) => ReactNode;
 };
 
