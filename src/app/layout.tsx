@@ -1,6 +1,7 @@
 import { Provider } from "@/components/provider";
 import { cn } from "@/lib/utils";
-import "@/style/globals.css";
+import "@/styles/globals.css";
+import { LayoutParams } from "@/types/next";
 import type { Metadata } from "next";
 import { geistMono, geistSans } from "./fonts";
 
@@ -9,17 +10,15 @@ export const metadata: Metadata = {
   description: "Learn faster",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function RootLayout({ children }: LayoutParams) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(geistSans.variable, geistMono.variable, "antialiased")}
       >
-        <Provider>{children}</Provider>
+        <Provider>
+          <div className="min-h-screen flex flex-col">{children}</div>
+        </Provider>
       </body>
     </html>
   );

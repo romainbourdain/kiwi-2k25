@@ -13,10 +13,11 @@ model Course {
     courseSections CourseSection[]
     userAccess     UserCourseAccess[]
 
+    authorId String? @map("userId")
+    author   User?   @relation(fields: [authorId], references: [id])
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    User      User?    @relation(fields: [userId], references: [id])
-    userId    String?
 }
 
 model CourseSection {
@@ -37,8 +38,8 @@ model CourseSection {
 model CourseLesson {
     id          String       @id @default(uuid())
     name        String
-    description String
-    content     String
+    description String?
+    content     String       @default("")
     order       Int
     status      CourseStatus @default(PRIVATE)
 
