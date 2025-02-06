@@ -1,0 +1,7 @@
+@layer components {
+  .container {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 1500px;
+  }
+}

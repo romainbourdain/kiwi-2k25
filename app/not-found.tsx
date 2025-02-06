@@ -13,8 +13,9 @@ import Link from "next/link";
 
 export default async function NotFound() {
   return (
-    <>
-      <Navbar variant="consumer" />
+    <div className="bg-[url(/icons/background-light.svg)] dark:bg-[url(/icons/background-dark.svg)] bg-cover bg-no-repeat size-full flex-1 flex flex-col">
+      {" "}
+      <Navbar variant="full-page" />
       <CenteredPage>
         <Card className="max-w-screen-sm">
           <CardHeader>
@@ -38,6 +39,6 @@ export default async function NotFound() {
           </CardFooter>
         </Card>
       </CenteredPage>
-    </>
+    </div>
   );
 }

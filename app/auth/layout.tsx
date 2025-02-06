@@ -5,8 +5,10 @@ import type { LayoutParams } from "@/types/next";
 export default async function AuthLayout({ children }: LayoutParams) {
   return (
     <AuthGate redirectTo="/" requireAuth={false}>
-      <Navbar variant="consumer" />
-      {children}
+      <div className="bg-[url(/icons/background-light.svg)] dark:bg-[url(/icons/background-dark.svg)] bg-cover bg-no-repeat size-full flex-1 flex flex-col">
+        <Navbar variant="full-page" />
+        {children}
+      </div>
     </AuthGate>
   );
 }
