@@ -1,12 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { actionToast } from "@/lib/action";
 import { cn } from "@/lib/utils";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { arrayMove, SortableContext, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { GripVertical } from "lucide-react";
-import { SafeActionFn } from "next-safe-action";
 import {
   PropsWithChildren,
   ReactNode,
@@ -18,7 +17,7 @@ import { Button } from "./ui/button";
 
 export type SortableListProps<T extends { id: string }> = {
   items: T[];
-  onOrderChange: SafeActionFn;
+  onOrderChange: (...args: any) => Promise<object | undefined>;
   renderItems: (items: T[]) => ReactNode;
 };
 
@@ -48,7 +47,7 @@ export const SortableList = <T extends { id: string }>({
         getNewArray(optimisticItems, activeId, overId).map((item) => item.id)
       );
 
-      actionToast({ actionData });
+      // actionToast({ actionData });
     });
   };
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { SafeActionFn } from "next-safe-action";
 import { ComponentPropsWithRef, PropsWithChildren, useTransition } from "react";
 import { Spinner } from "./icons/spinner";
 import {
@@ -17,11 +16,11 @@ import {
 } from "./ui/alert-dialog";
 import { Button } from "./ui/button";
 
-export type ActionButtonProps = Omit<
+export type ActionButtonProps<> = Omit<
   ComponentPropsWithRef<typeof Button>,
   "onClick"
 > & {
-  action: () => SafeActionFn;
+  action: () => Promise<object | undefined>;
   requireAreYouSure?: boolean;
 };
 

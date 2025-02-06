@@ -27,7 +27,7 @@ export const SortableSectionList = ({
       items={sections}
       onOrderChange={updateSectionOrdersAction}
       renderItems={(items) => (
-        <>
+        <div className="space-y-1">
           {items.length > 0 ? (
             items.map((section) => (
               <SortableItem
@@ -72,7 +72,7 @@ export const SortableSectionList = ({
               Aucune section
             </span>
           )}
-        </>
+        </div>
       )}
     />
   );
