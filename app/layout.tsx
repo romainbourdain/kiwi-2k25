@@ -1,4 +1,4 @@
-import { Provider } from "@/components/provider";
+import { Provider } from "@/components/utilities/provider";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 import { LayoutParams } from "@/types/next";

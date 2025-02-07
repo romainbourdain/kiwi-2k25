@@ -4,9 +4,12 @@ import {
   deleteSectionAction,
   updateSectionOrdersAction,
 } from "@/actions/section.action";
-import { ActionButton } from "@/components/action-button";
-import { SortableItem, SortableList } from "@/components/sortable-list";
 import { Button } from "@/components/ui/button";
+import { ActionButton } from "@/components/utilities/action-button";
+import {
+  SortableItem,
+  SortableList,
+} from "@/components/utilities/sortable-list";
 import { cn } from "@/lib/utils";
 import { CourseSection, CourseStatus } from "@prisma/client";
 import { DialogTrigger } from "@radix-ui/react-dialog";

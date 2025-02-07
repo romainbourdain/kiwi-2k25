@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { ComponentPropsWithRef, PropsWithChildren, useTransition } from "react";
-import { Spinner } from "./icons/spinner";
+import { Spinner } from "../icons/spinner";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,24 +13,24 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "./ui/alert-dialog";
-import { Button } from "./ui/button";
+} from "../ui/alert-dialog";
+import { Button } from "../ui/button";
 
-export type ActionButtonProps<> = Omit<
+export type ActionButtonProps<T> = Omit<
   ComponentPropsWithRef<typeof Button>,
   "onClick"
 > & {
-  action: () => Promise<object | undefined>;
+  action: () => Promise<T | undefined>;
   requireAreYouSure?: boolean;
 };
 
-export const ActionButton = ({
+export const ActionButton = <T extends {}>({
   action,
   requireAreYouSure = false,
   disabled,
   children,
   ...props
-}: ActionButtonProps) => {
+}: ActionButtonProps<T>) => {
   const [isLoading, startTransition] = useTransition();
 
   const performAction = () => {

@@ -13,7 +13,7 @@ import {
   useOptimistic,
   useTransition,
 } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 export type SortableListProps<T extends { id: string }> = {
   items: T[];

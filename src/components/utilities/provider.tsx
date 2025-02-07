@@ -2,7 +2,7 @@
 
 import { ThemeProvider } from "@/features/theme/theme-provider";
 import type { PropsWithChildren } from "react";
-import { Toaster } from "./ui/sonner";
+import { Toaster } from "../ui/sonner";
 
 export type ProviderProps = PropsWithChildren<{}>;
 

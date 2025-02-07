@@ -61,8 +61,16 @@ export const findCourseByLessonIdQuery = async <
   return lesson?.section.course as Prisma.CourseGetPayload<T> | null;
 };
 
-export const createCourseQuery = async (data: Prisma.CourseCreateInput) => {
-  const course = await db.course.create({ data });
+export const createCourseQuery = async (
+  authorId: string,
+  data: Omit<Prisma.CourseCreateInput, "author">
+) => {
+  const course = await db.course.create({
+    data: {
+      authorId,
+      ...data,
+    },
+  });
 
   revalidateCourseCache(course.id);
   return course;
@@ -70,7 +78,7 @@ export const createCourseQuery = async (data: Prisma.CourseCreateInput) => {
 
 export const updateCourseQuery = async (
   id: string,
-  data: Prisma.CourseCreateInput
+  data: Partial<Prisma.CourseCreateInput>
 ) => {
   const course = await db.course.update({
     where: { id },

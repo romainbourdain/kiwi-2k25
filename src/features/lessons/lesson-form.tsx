@@ -4,7 +4,6 @@ import {
   createLessonAction,
   updateLessonAction,
 } from "@/actions/lesson.action";
-import { LoadingTextSwap } from "@/components/action-button";
 import { RequiredLabelIcon } from "@/components/icons/required-label-icon";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,6 +24,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { LoadingTextSwap } from "@/components/utilities/action-button";
 import { CourseLesson, CourseSection, CourseStatus } from "@prisma/client";
 import { LessonData, lessonSchema } from "../../schemas/lesson.schema";
 

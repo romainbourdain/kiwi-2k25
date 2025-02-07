@@ -4,7 +4,6 @@ import {
   createSectionAction,
   updateSectionAction,
 } from "@/actions/section.action";
-import { LoadingTextSwap } from "@/components/action-button";
 import { RequiredLabelIcon } from "@/components/icons/required-label-icon";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,6 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { LoadingTextSwap } from "@/components/utilities/action-button";
 import { CourseSection, CourseStatus } from "@prisma/client";
 import { SectionData, sectionSchema } from "../../schemas/section.schema";
 

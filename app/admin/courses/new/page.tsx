@@ -1,6 +1,6 @@
-import { PageHeader } from "@/components/layout/page/page-header";
 import { CourseForm } from "@/features/courses/course-form";
 import type { PageParams } from "@/types/next";
+import { PageHeader } from "../../../../src/components/layout/page/page-header";
 
 export default async function RoutePage({}: PageParams) {
   return (

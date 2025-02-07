@@ -1,4 +1,4 @@
-import { getAllCourses } from "@/actions/course.action";
+import { getAllCoursesAction } from "@/actions/course.action";
 import { PageHeader } from "@/components/layout/page/page-header";
 import { buttonVariants } from "@/components/ui/button";
 import { CourseTable } from "@/features/courses/course-table";
@@ -6,7 +6,8 @@ import type { PageParams } from "@/types/next";
 import Link from "next/link";
 
 export default async function CoursesPage({}: PageParams) {
-  const courses = await getAllCourses();
+  const res = await getAllCoursesAction();
+  if (!res?.data) return null;
 
   return (
     <div className="container py-6 px-8">
@@ -16,7 +17,7 @@ export default async function CoursesPage({}: PageParams) {
         </Link>
       </PageHeader>
       <div className="container py-6 px-8">
-        <CourseTable courses={courses} />
+        <CourseTable courses={res.data} />
       </div>
     </div>
   );
